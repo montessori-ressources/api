@@ -3,7 +3,9 @@
 ## Endpoints
 
 - GET `/nomenclatures` list of nomenclatures
-- POST `/nomenclatures/upload` push a new nomenclature (take images)
+- POST `/nomenclatures` push a new nomenclature (take `images`)
+
+Documented on [/api-docs/](https://montessori-ressources-api.herokuapp.com/api-docs/) via Swagger.
 
 ## Test with httpies
 
