@@ -12,5 +12,5 @@ http :3000/nomenclatures
 ```
 
 ```
-http -f post :3000/nomenclatures/upload photos@test/data/1027-400x400.jpg
+http -f post :3000/nomenclatures photos@test/data/1027-400x400.jpg
 ```
