@@ -47,4 +47,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use('/nomenclatures', nomRouter);
 
+// error handling
+app.use(function(error, req, res, next) {
+  res.status(500).json({ message: error.message });
+});
+
 module.exports = app;

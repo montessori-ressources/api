@@ -2,7 +2,7 @@ const Nomenclature = require('../models/nomenclature.model');
 
 
 module.exports = (req, res, next) => {
-  Nomenclature.find((err, docs) => {
+  Nomenclature.findOne({_id: req.params.id}, (err, docs) => {
     if (err) {
       return next(err)
     }

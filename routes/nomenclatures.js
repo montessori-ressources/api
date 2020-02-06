@@ -3,6 +3,8 @@ var router = express.Router();
 
 const list = require('../controllers/list.controller.js')
 const upload = require('../controllers/upload.controller.js')
+const del = require('../controllers/delete.controller.js')
+const get = require('../controllers/get.controller.js')
 
 /**
  * @swagger
@@ -10,10 +12,10 @@ const upload = require('../controllers/upload.controller.js')
  *   Nomenclature:
  *    type: object
  *    required:
- *      - id
+ *      - _id
  *      - name
  *    properties:
- *      id:
+ *      _id:
  *        type: integer
  *        format: int64
  *      name:
@@ -40,6 +42,7 @@ const upload = require('../controllers/upload.controller.js')
  * @swagger
  * /nomenclatures:
  *    get:
+ *      tags: ["nomenclatures"]
  *      description: This should return all nomenclatures
  *      produces:
  *        application/json
@@ -59,6 +62,7 @@ router.get('/', list);
  * @swagger
  * /nomenclatures:
  *    post:
+ *      tags: ["nomenclatures"]
  *      description: This is used to upload a new nomenclature
  */
 router.post(
@@ -69,8 +73,34 @@ router.post(
 
 /**
  * @swagger
+ * /nomenclatures/{id}:
+ *    delete:
+ *      tags: ["nomenclatures"]
+ *      description: This should delete one nomenclature
+ *      produces:
+ *        application/json
+ *      parameters:
+ *      - name: "id"
+ *        in: "path"
+ *        required: true
+ *      responses:
+ *        200:
+ *          description: "sucessfull operation"
+ *          schema:
+ *            type: "object"
+ *            properties:
+ *              msg:
+ *                type: string
+ *                example: "object xxx deleted"
+ *
+ */
+router.delete('/:id', del);
+
+/**
+ * @swagger
  * /nomenclatures:
  *    put:
+ *      tags: ["nomenclatures"]
  *      description: Update existing nomenclature
  */
 
@@ -78,12 +108,20 @@ router.post(
   * @swagger
   * /nomenclatures/{id}:
   *    get:
+  *      tags: ["nomenclatures"]
   *      description: Find by nomenclature ID
   *      parameters:
   *      - name: id
   *        in: path
   *        required: true
   *        type: string
+  *      responses:
+  *        200:
+  *          description: "sucessfull operation"
+  *          schema:
+  *            $ref: "#/definitions/Nomenclature"
+  *
   */
+router.get('/:id', get);
 
 module.exports = router;
