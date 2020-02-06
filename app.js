@@ -14,6 +14,7 @@ mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/test',
 );
 
 var nomRouter = require('./routes/nomenclatures')
+var indexRouter = require('./routes/index')
 
 var app = express()
 app.use(cors())
@@ -46,6 +47,8 @@ const swaggerUi = require('swagger-ui-express');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use('/nomenclatures', nomRouter);
+
+app.use('/', indexRouter);
 
 // error handling
 app.use(function(error, req, res, next) {
