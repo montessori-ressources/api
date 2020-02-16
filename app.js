@@ -13,8 +13,7 @@ mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/test',
   {useNewUrlParser: true, useUnifiedTopology: true}
 );
 
-var nomRouter = require('./routes/nomenclatures')
-var indexRouter = require('./routes/index')
+var indexRouter = require('./routes')
 
 var app = express()
 app.use(cors())
@@ -36,17 +35,16 @@ const options = {
       version: '1.0.0',
       description: 'Montessori Ressources',
     },
+    //basePath: '/v1',
   },
   // List of files to be processes. You can also set globs './routes/*.js'
-  apis: ['./routes/*.js'],
+  apis: ['./routes/*.js', './routes/v1/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
 
 const swaggerUi = require('swagger-ui-express');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-
-app.use('/nomenclatures', nomRouter);
 
 app.use('/', indexRouter);
 

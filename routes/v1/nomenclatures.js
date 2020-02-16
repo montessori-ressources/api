@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-const list = require('../controllers/list.controller.js')
-const upload = require('../controllers/upload.controller.js')
-const del = require('../controllers/delete.controller.js')
-const get = require('../controllers/get.controller.js')
+const list = require('../../controllers/list.controller.js')
+const upload = require('../../controllers/upload.controller.js')
+const del = require('../../controllers/delete.controller.js')
+const get = require('../../controllers/get.controller.js')
 
 /**
  * @swagger
@@ -40,10 +40,9 @@ const get = require('../controllers/get.controller.js')
 
 /**
  * @swagger
- * /nomenclatures:
+ * /v1/nomenclatures:
  *    get:
  *      tags: ["nomenclatures"]
- *      deprecated: true
  *      description: This should return all nomenclatures
  *      produces:
  *        application/json
@@ -61,10 +60,9 @@ router.get('/', list);
 
 /**
  * @swagger
- * /nomenclatures:
+ * /v1/nomenclatures:
  *    post:
  *      tags: ["nomenclatures"]
- *      deprecated: true
  *      description: This is used to upload a new nomenclature
  */
 router.post(
@@ -75,9 +73,8 @@ router.post(
 
 /**
  * @swagger
- * /nomenclatures/{id}:
+ * /v1/nomenclatures/{id}:
  *    delete:
- *      deprecated: true
  *      tags: ["nomenclatures"]
  *      description: This should delete one nomenclature
  *      produces:
@@ -101,18 +98,16 @@ router.delete('/:id', del);
 
 /**
  * @swagger
- * /nomenclatures:
+ * /v1/nomenclatures:
  *    put:
- *      deprecated: true
  *      tags: ["nomenclatures"]
  *      description: Update existing nomenclature
  */
 
  /**
   * @swagger
-  * /nomenclatures/{id}:
+  * /v1/nomenclatures/{id}:
   *    get:
-  *      deprecated: true
   *      tags: ["nomenclatures"]
   *      description: Find by nomenclature ID
   *      parameters:
