@@ -1,10 +1,11 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 const list = require('../../controllers/list.controller.js')
 const upload = require('../../controllers/upload.controller.js')
 const del = require('../../controllers/delete.controller.js')
 const get = require('../../controllers/get.controller.js')
+const put = require('../../controllers/put.controller.js')
 
 /**
  * @swagger
@@ -48,7 +49,7 @@ const get = require('../../controllers/get.controller.js')
  *        application/json
  *      responses:
  *        200:
- *          description: "sucessfull operation"
+ *          description: "successful operation"
  *          schema:
  *            type: "array"
  *            items:
@@ -56,7 +57,7 @@ const get = require('../../controllers/get.controller.js')
  *
  *
  */
-router.get('/', list);
+router.get('/', list)
 
 /**
  * @swagger
@@ -64,6 +65,24 @@ router.get('/', list);
  *    post:
  *      tags: ["nomenclatures"]
  *      description: This is used to upload a new nomenclature
+ *      consumes:
+ *        - multipart/form-data
+ *      parameters:
+ *        - in: formData
+ *          name: photos
+ *          type: array
+ *          items:
+ *            type: string
+ *            format: binary
+ *      responses:
+ *        200:
+ *          description: "successful operation"
+ *          schema:
+ *            type: "object"
+ *            properties:
+ *              msg:
+ *                type: string
+ *                example: "nomenclature xxx created"
  */
 router.post(
   '/',
@@ -85,7 +104,7 @@ router.post(
  *        required: true
  *      responses:
  *        200:
- *          description: "sucessfull operation"
+ *          description: "successful operation"
  *          schema:
  *            type: "object"
  *            properties:
@@ -94,15 +113,31 @@ router.post(
  *                example: "object xxx deleted"
  *
  */
-router.delete('/:id', del);
+router.delete('/:id', del)
 
 /**
  * @swagger
- * /v1/nomenclatures:
+ * /v1/nomenclatures/{id}:
  *    put:
  *      tags: ["nomenclatures"]
  *      description: Update existing nomenclature
+ *      parameters:
+ *      - name: id
+ *        in: path
+ *        required: true
+ *        type: string
+ *      - name: body
+ *        in: body
+ *        required: true
+ *        type: object
+ *        schema:
+ *          $ref: "#/definitions/Nomenclature"
+ *      responses:
+ *        200:
+ *          description: "successful operation"
+ *
  */
+ router.put('/:id', put)
 
  /**
   * @swagger
@@ -117,11 +152,11 @@ router.delete('/:id', del);
   *        type: string
   *      responses:
   *        200:
-  *          description: "sucessfull operation"
+  *          description: "successful operation"
   *          schema:
   *            $ref: "#/definitions/Nomenclature"
   *
   */
-router.get('/:id', get);
+router.get('/:id', get)
 
-module.exports = router;
+module.exports = router
