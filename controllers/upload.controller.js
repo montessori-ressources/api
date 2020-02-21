@@ -14,8 +14,6 @@ exports.middleware = multer({
     },
     key: function (req, file, cb) {
       let uuid = uuidv4()
-      //console.log(uuid)
-      // console.log(file)
       cb(null, uuid)
     }
   })
@@ -30,5 +28,4 @@ exports.controller = (req, res, next) => {
       return next(err)
     res.send('Successfully uploaded ' + req.files.length + ' files!')
   })
-
 }
