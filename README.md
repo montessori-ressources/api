@@ -3,7 +3,7 @@
 ## Endpoints
 
 - GET `/v1/nomenclatures` list of nomenclatures
-- POST `/v1/nomenclatures` push a new nomenclature (take `images`)
+- POST `/v1/nomenclatures` push a new nomenclature (take `multipart/form-data` with field `photos`)
 
 Documented on [/api-docs/](https://montessori-ressources-api.herokuapp.com/api-docs/) via Swagger.
 
