@@ -4,7 +4,7 @@ const Nomenclature = require('../models/nomenclature.model');
 module.exports = async(req, res, next) => {
   try {
     let nomenclature = await Nomenclature.findOne({_id: req.params.id})
-    
+
     //update fields
     for (var field in Nomenclature.schema.paths) {
        if ((field !== '_id') && (field !== '__v')) {
