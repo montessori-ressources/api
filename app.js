@@ -17,7 +17,13 @@ mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/test',
 var indexRouter = require('./routes')
 
 var app = express()
-app.use(cors())
+
+// this allow to read from fontend the auth-tokem
+var corsOptions = {
+  exposedHeaders: 'x-auth-token'
+}
+
+app.use(cors(corsOptions))
 
 app.use(logger('dev'))
 app.use(express.json())

@@ -63,31 +63,6 @@ router.get('/', list)
 
 /**
  * @swagger
- * /v1.1/nomenclatures/2:
- *    get:
- *      tags: ["nomenclatures"]
- *      security:
- *        - Bearer: []
- *      description: This should return all nomenclatures
- *      produces:
- *        application/json
- *      responses:
- *        200:
- *          description: "successful operation"
- *          schema:
- *            type: "array"
- *            items:
- *              $ref: "#/definitions/Nomenclature"
- *
- *
- */
-router.get('/2',
-  passport.authenticate('jwt', {session: false}),
-  list
-)
-
-/**
- * @swagger
  * /v1.1/nomenclatures:
  *    post:
  *      tags: ["nomenclatures"]
