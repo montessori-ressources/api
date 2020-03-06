@@ -1,11 +1,16 @@
 # Montessori API
 
+## Develop on this project
+
+```
+yarn install
+yarn dev
+```
+
 ## Endpoints
 
-- GET `/v1/nomenclatures` list of nomenclatures
-- POST `/v1/nomenclatures` push a new nomenclature (take `multipart/form-data` with field `photos`)
-
-Documented on [/api-docs/](https://montessori-ressources-api.herokuapp.com/api-docs/) via Swagger.
+Documented on [/api-docs/](https://montessori-ressources-api.herokuapp.com/api-docs/)
+via Swagger.
 
 ## Test with httpies
 
@@ -15,7 +20,8 @@ List nomenclatures
 http :3000/v1/nomenclatures
 ```
 
-Post a new nomenclature with 1 image
+Post a new nomenclature with 2 images
+
 ```
-http -f post :3000/v1/nomenclatures photos@test/data/1027-400x400.jpg
+http -f post :3000/v1/nomenclatures photos@test/data/1027-400x400.jpg photos@test/data/977-400x400.jpg
 ```

@@ -3,6 +3,7 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var cors = require('cors')
+const auth = require('./services/auth.service')
 
 // load .env
 require('dotenv').config()
@@ -16,7 +17,13 @@ mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/test',
 var indexRouter = require('./routes')
 
 var app = express()
-app.use(cors())
+
+// this allow to read from fontend the auth-tokem
+var corsOptions = {
+  exposedHeaders: 'x-auth-token'
+}
+
+app.use(cors(corsOptions))
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -29,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 const swaggerJsdoc = require('swagger-jsdoc');
 const options = {
   swaggerDefinition: {
+    openapi: '3.0.1',
     // Like the one described here: https://swagger.io/specification/#infoObject
     info: {
       title: 'Montessori Ressources',
@@ -36,15 +44,28 @@ const options = {
       description: 'Montessori Ressources',
     },
     //basePath: '/v1',
+    components: {
+      securitySchemes: {
+        Bearer: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    }
   },
+
   // List of files to be processes. You can also set globs './routes/*.js'
-  apis: ['./routes/*.js', './routes/v1/*.js'],
+  apis: ['./routes/*.js', './routes/*/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
 
 const swaggerUi = require('swagger-ui-express');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+// setup auth strategies
+auth.setupStrategies()
 
 app.use('/', indexRouter);
 
