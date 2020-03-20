@@ -9,6 +9,8 @@ const put = require('../../controllers/put.controller.js')
 
 var passport = require('passport');
 
+const auth = require('../../services/auth.service.js')
+
 /**
  * @swagger
  * definitions:
@@ -150,6 +152,7 @@ router.delete('/:id',
  */
  router.put('/:id',
     passport.authenticate('jwt', {session: false}),
+    auth.checkIsInRole(auth.ROLES.admin),
     put)
 
  /**

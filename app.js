@@ -3,7 +3,7 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var cors = require('cors')
-const auth = require('./services/auth.service')
+const strategies = require('./services/strategies.service')
 
 // load .env
 require('dotenv').config()
@@ -65,7 +65,7 @@ const swaggerUi = require('swagger-ui-express');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 // setup auth strategies
-auth.setupStrategies()
+strategies.setupStrategies()
 
 app.use('/', indexRouter);
 
