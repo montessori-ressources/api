@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 const findOrCreate = require('mongoose-find-or-create')
 
 let UserSchema = new Schema({
-    facebookId: {type: String, unique: true, required: false},
-    googleId: {type: String, unique: true, required: false},
+    facebookId: {type: String, unique: false, required: false},
+    googleId: {type: String, unique: false, required: false},
     email: {type: String, unique: false, required: false},
     name: {type: String, unique: false, required: false},
 });
