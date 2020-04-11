@@ -20,7 +20,7 @@ var app = express()
 
 // this allow to read from fontend the auth-tokem
 var corsOptions = {
-  exposedHeaders: 'x-auth-token'
+  exposedHeaders: ['Content-Range', 'x-auth-token']
 }
 
 app.use(cors(corsOptions))
