@@ -5,12 +5,12 @@ const ROLES = {
 
 const checkIsInRole = (...roles) => (req, res, next) => {
   if (!req.user) {
-    return res.send(401, 'Wrong role')
+    return res.status(401).json({ message: 'Wrong role'});
   }
 
   const hasRole = roles.find(role => req.user.role === role)
   if (!hasRole) {
-    return res.send(401, 'Wrong role')
+    return res.status(401).json({ message: 'Wrong role'});
   }
 
   return next()

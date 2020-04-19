@@ -3,7 +3,7 @@ var multerS3 = require('multer-s3')
 var uuidv4 = require('uuid/v4')
 var aws = require('aws-sdk')
 var s3 = new aws.S3()
-const Nomenclature = require('../models/nomenclature.model');
+const Nomenclature = require('../../models/nomenclature.model');
 
 exports.middleware = multer({
   storage: multerS3({
@@ -22,6 +22,7 @@ exports.middleware = multer({
 exports.controller = (req, res, next) => {
   let nomenclature = new Nomenclature
   nomenclature.name = 'New Nomenclature'
+  nomenclature.author = req.user.name
   nomenclature.cards = req.files
   nomenclature.save((err) => {
     if(err)

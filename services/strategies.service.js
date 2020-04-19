@@ -6,6 +6,7 @@ const passportJWT = require("passport-jwt");
 const JWTStrategy   = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
+
 const setupStrategies = () => {
     // facebook strategy is used to validate the login
     passport.use(new FacebookTokenStrategy({
@@ -18,7 +19,8 @@ const setupStrategies = () => {
         {
           email: profile._json.email,
           name: profile.displayName,
-          picture: profile._json.picture }, (err, user) => {
+          picture: profile._json.picture
+        }, (err, user) => {
         return done(err, user)
       })
     }))
@@ -34,7 +36,8 @@ const setupStrategies = () => {
         {
           email: profile._json.email,
           name: profile.displayName,
-          picture: profile._json.picture }, (err, user) => {
+          picture: profile._json.picture
+        }, (err, user) => {
         return done(err, user)
       })
     }))
