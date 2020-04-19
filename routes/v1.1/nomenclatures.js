@@ -1,11 +1,11 @@
 var express = require('express')
 var router = express.Router()
 
-const list = require('../../controllers/list.controller.js')
-const upload = require('../../controllers/upload.controller.js')
-const del = require('../../controllers/delete.controller.js')
-const get = require('../../controllers/get.controller.js')
-const put = require('../../controllers/put.controller.js')
+const list = require('../../controllers/nomenclatures/list.controller.js')
+const upload = require('../../controllers/nomenclatures/upload.controller.js')
+const del = require('../../controllers/nomenclatures/delete.controller.js')
+const get = require('../../controllers/nomenclatures/get.controller.js')
+const put = require('../../controllers/nomenclatures/put.controller.js')
 
 var passport = require('passport');
 
@@ -124,6 +124,7 @@ router.post(
  */
 router.delete('/:id',
   passport.authenticate('jwt', {session: false}),
+  auth.checkIsInRole(auth.ROLES.admin),
   del)
 
 /**

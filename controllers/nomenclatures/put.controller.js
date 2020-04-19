@@ -1,4 +1,4 @@
-const Nomenclature = require('../models/nomenclature.model');
+const Nomenclature = require('../../models/nomenclature.model');
 
 
 module.exports = async(req, res, next) => {
@@ -7,12 +7,14 @@ module.exports = async(req, res, next) => {
 
     //update fields
     for (var field in Nomenclature.schema.paths) {
-       if ((field !== '_id') && (field !== '__v')) {
+       if ((field !== '_id') && (field !== '__v') && (field !== 'id')) {
           if (req.body[field] !== undefined) {
              nomenclature[field] = req.body[field];
           }
        }
     }
+
+    nomenclature.updated = Date.now()
     await nomenclature.save()
     res.json({msg: "Object " + req.params.id + " updated."})
   }
