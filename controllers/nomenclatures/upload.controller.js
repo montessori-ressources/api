@@ -22,6 +22,9 @@ exports.middleware = multer({
 exports.controller = (req, res, next) => {
   let nomenclature = new Nomenclature
   nomenclature.name = 'New Nomenclature'
+  if(req.body.name) {
+    nomenclature.name = req.body.name
+  }
   nomenclature.author = req.user.name
   nomenclature.cards = req.files
   nomenclature.save((err) => {
