@@ -4,7 +4,7 @@
 
 ```
 yarn install
-yarn dev
+yarn develop
 ```
 
 ## Endpoints
