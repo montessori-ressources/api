@@ -32,9 +32,11 @@ nomenclatureSchema.method('transform', function() {
   })
 
   // inside tags
-  obj.tags = obj.tags.map(tag => {
-    tag.id = tag._id
-    delete tag._id
+  obj.tags = obj.tags
+    .filter(tag => tag != undefined)
+    .map(tag => {
+      tag.id = tag._id
+      delete tag._id
     return tag
   })
   

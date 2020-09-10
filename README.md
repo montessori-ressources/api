@@ -3,6 +3,7 @@
 ## Develop on this project
 
 ```
+docker run --name mongo -p27017:27017 -d mongo # for a quick mongo via docker
 yarn install
 yarn develop
 ```
