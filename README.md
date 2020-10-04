@@ -2,6 +2,13 @@
 
 ## Develop on this project
 
+You must provide the needed environement variables to access AWS S3 bucket, and 
+Google/Facebook authentification scret keys. For that you must copy the existing 
+`.env.default` to `.env` and provide the correct information inside the file.
+
+More info [here](https://github.com/orgs/montessori-ressources/teams/core)
+
+Then run:
 ```
 yarn install
 yarn develop
