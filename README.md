@@ -10,6 +10,7 @@ More info [here](https://github.com/orgs/montessori-ressources/teams/core)
 
 Then run:
 ```
+docker run --name mongo -p27017:27017 -d mongo # for a quick mongo via docker
 yarn install
 yarn develop
 ```
