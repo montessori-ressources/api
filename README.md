@@ -1,5 +1,7 @@
 # Montessori API
 
+> This project is now archived: the backend of Montessori-Ressources project is managed by Firebase. The frontend application have been modified to handle Firebase calls. Firebase is now handling storage, data, authentication and even frontend hosting.
+
 ## Develop on this project
 
 You must provide the needed environement variables to access AWS S3 bucket, and 
